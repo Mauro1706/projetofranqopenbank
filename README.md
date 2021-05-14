@@ -2,7 +2,9 @@
 
 ## Como iniciar o projeto
 
-- Clonar o projeto CRUD do github
+- Rodar um servidor APACHE - Exemplo: https://www.apachefriends.org/xampp-files/7.3.28/xampp-windows-x64-7.3.28-1-VC15-installer.exe
+
+- Clonar o projeto CRUD do github para dento do <b>XAMPP</b>. Exemplo: C:/xampp/htdocs
 https://github.com/Mauro1706/projetofranqopenbank.git
 
 
