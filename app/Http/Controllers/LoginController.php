@@ -13,7 +13,7 @@ class LoginController extends Controller
         $msg = $request->session()->get('msg');
         $request->session()->remove('msg');
         $usuarioLogado = $request->session()->exists('user');
-        return view('login/login')->with([
+        return view('login.login')->with([
             'usuarioLogado' => $usuarioLogado,
             'msg' => $msg,
         ]);
@@ -70,7 +70,7 @@ class LoginController extends Controller
         $request->session()->remove('msg');
         $usuarioLogado = $request->session()->exists('user');
 
-        return view('login/register')->with([
+        return view('login.register')->with([
             'usuarioLogado' => $usuarioLogado,
             'msg' => $msg,
         ]);
@@ -85,15 +85,34 @@ class LoginController extends Controller
         $users = $request->session()->get('users');
         $usuExist = false;
         foreach (collect($users)->all() as $key => $use) {
-            if (($use['login'] == $login) && ($use['senha'] == $senha)){
+            if ($use['login'] == $login){
                 $usuExist = true;
             }
         }
 
-        if ($usuExist){
-            $request->session()->put('msg', 'Usuario já existe na base de dados. Faça login no sistema.');
-            return redirect()->action([LoginController::class, 'index']);
+        $msg = [];
+
+        if ($usuExist)
+            $msg[] = 'Usuario já existe na base de dados. Faça login no sistema.';
+
+        if (count(explode('.', $login)) > 1)
+            $msg[] = "Login não confere com o padrão para registro no sistema. Ex.: usuarioteste";
+
+        if (strlen($senha) < 6)
+            $msg[] = 'Senha deve ter o minimo de 6 caracteres.';
+
+        if (count($msg)) {
+            $usuarioLogado = $request->session()->exists('user');
+            return view('login.register')->with([
+                'usuarioLogado' => $usuarioLogado,
+                'name' => $username,
+                'login' => $login,
+                'senha' => $senha,
+                'msg' => join('|', $msg),
+            ]);
         }
+
+
 
         $newUsers = [
             'username' => $username,
@@ -103,8 +122,23 @@ class LoginController extends Controller
 
         $request->session()->push('users', $newUsers);
 
-        $request->session()->put('msg', 'suario registrado na base de dados. Faça login no sistema.');
+        $request->session()->put('msg', 'Usuario registrado na base de dados. Faça login no sistema.');
         return redirect()->action([LoginController::class, 'index']);
+    }
+
+    public function usuarios(Request $request)
+    {
+        $users = $request->session()->get('users');
+
+        $usuarioLogado = $request->session()->exists('user');
+
+        $usuarioLogado = $request->session()->exists('user');
+        $user = $request->session()->get('user');
+        return view('login.usuarios')->with([
+            'usuarioLogado' => $usuarioLogado,
+            'user' => $user,
+            'usuarios' => $users
+        ]);
     }
 
     public function logout(Request $request)

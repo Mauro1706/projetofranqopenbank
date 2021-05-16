@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("/", function (){
+    return view('index');
+});
 Route::get("/", [\App\Http\Controllers\PropertyController::class, "index"]);
 Route::get("/moeda", [\App\Http\Controllers\PropertyController::class, "moeda"]);
 Route::get("/bolsa", [\App\Http\Controllers\PropertyController::class, "bolsa"]);
@@ -21,3 +24,4 @@ Route::put("/logar", [\App\Http\Controllers\LoginController::class, "login"]);
 Route::get("/logout", [\App\Http\Controllers\LoginController::class, "logout"]);
 Route::get("/register", [\App\Http\Controllers\LoginController::class, "register"]);
 Route::put("/gravarUsuario", [\App\Http\Controllers\LoginController::class, "gravarUsuario"]);
+Route::get("/usuarios", [\App\Http\Controllers\LoginController::class, "usuarios"]);

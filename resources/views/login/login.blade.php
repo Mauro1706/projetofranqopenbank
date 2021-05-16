@@ -39,7 +39,7 @@
                     </div>
                     <?php if ($msg != "") { ?>
                     <div class="form-group">
-                        <label class="text-danger">{{$msg}}</label>
+                        <label class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{$msg}}</label>
                     </div>
                     <?php } ?>
                     <div class="d-flex justify-content-center mt-3 login_container">
@@ -53,7 +53,7 @@
                     Ainda não tem conta? <a href="{{url('/register')}}" class="ml-2">Inscrever-se</a>
                 </div>
                 <div class="d-flex justify-content-center links">
-                    {{--<a href="#">Esqueci minha senha</a>--}}
+                    <a href="{{url('/usuarios')}}">Esqueci minha senha</a>
                 </div>
             </div>
         </div>
