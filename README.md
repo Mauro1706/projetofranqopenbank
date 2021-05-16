@@ -2,7 +2,7 @@
 
 ## Acesso ao sistema hospedado
 
-- https://rodriguesfernandes.com
+- <a href="https://rodriguesfernandes.com" target="_blank'>https://rodriguesfernandes.com</a>
 
 ## Como iniciar o projeto
 
