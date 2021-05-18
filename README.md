@@ -2,7 +2,7 @@
 
 ## Acesso ao sistema hospedado
 
-- https://rodriguesfernandes.com
+- http://franqopenbank.rodriguesfernandes.com
 
 ## Como iniciar o projeto
 
